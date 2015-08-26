@@ -17,14 +17,14 @@
 			<id>develop</id>
 			<properties>
 				<loadtest.baseurl>www.develop.office.vm.de</loadtest.baseurl>
-				<loadtest.sourcefile>${loadtest.sourcefile}</loadtest.sourcefile>
+				<loadtest.sourcefile>${loadtest.sourcefile.param}</loadtest.sourcefile>
 			</properties>
 		</profile>
 		<profile>
 			<id>release</id>
 			<properties>
 				<loadtest.baseurl>www.release.office.vm.de</loadtest.baseurl>
-				<loadtest.sourcefile>${loadtest.sourcefile}</loadtest.sourcefile>
+				<loadtest.sourcefile>${loadtest.sourcefile.param}</loadtest.sourcefile>
 			</properties>
 		</profile>
 	</profiles>
@@ -40,15 +40,44 @@
 					<configuration>
 						<overrideRootLogLevel>INFO</overrideRootLogLevel>
 						<suppressJMeterOutput>false</suppressJMeterOutput>
+						<ignoreResultFailures>true</ignoreResultFailures>
+						<testResultsTimestamp>false</testResultsTimestamp>
 						<propertiesUser>
 							<loadtest.baseurl>${loadtest.baseurl}</loadtest.baseurl>
 							<loadtest.sourcefile>${loadtest.sourcefile}</loadtest.sourcefile>
 						</propertiesUser>
 					</configuration>
+
+					<dependencies>
+						<dependency>
+							<groupId>kg.apc</groupId>
+							<artifactId>jmeter-plugins</artifactId>
+							<version>1.0.0</version>
+							<exclusions>
+								<exclusion>
+									<groupId>kg.apc</groupId>
+									<artifactId>perfmon</artifactId>
+								</exclusion>
+								<exclusion>
+									<groupId>org.apache.jmeter</groupId>
+									<artifactId>jorphan</artifactId>
+								</exclusion>
+								<exclusion>
+									<groupId>org.apache.hadoop</groupId>
+									<artifactId>hadoop-core</artifactId>
+								</exclusion>
+								<exclusion>
+									<groupId>org.apache.hbase</groupId>
+									<artifactId>hbase</artifactId>
+								</exclusion>
+							</exclusions>
+						</dependency>
+					</dependencies>
+
 					<executions>
 						<execution>
 							<id>jmeter-tests</id>
-							<phase>test</phase>
+							<phase>verify</phase>
 							<goals>
 								<goal>jmeter</goal>
 							</goals>
@@ -61,26 +90,31 @@
 					<groupId>de.codecentric</groupId>
 					<artifactId>jmeter-graph-maven-plugin</artifactId>
 					<version>0.1.0</version>
-					<executions>
-						<execution>
-							<id>create-graphs</id>
-							<goals>
-								<goal>create-graph</goal>
-							</goals>
-							<phase>verify</phase>
-							<configuration>
-								<inputFile>${project.basedir}/jmeter/results/results.jtl</inputFile>
-								<graphs>
-									<graph>
-										<pluginType>ThreadsStateOverTime</pluginType>
-										<width>800</width>
-										<height>600</height>
-										<outputFile>${project.basedir}/jmeter/results/SimpleWebservicePerformanceTest-ThreadsStateOverTime.png</outputFile>
-									</graph>
-								</graphs>
-							</configuration>
-						</execution>
-					</executions>
+					<configuration>
+						<inputFile>${project.build.directory}/jmeter/results/jmeter_load_access.jtl</inputFile>
+						<graphs>
+							<graph>
+								<pluginType>ThreadsStateOverTime</pluginType>
+								<width>800</width>
+								<height>600</height>
+								<outputFile>${project.build.directory}/jmeter/results/ThreadsStateOverTime.png</outputFile>
+							</graph>
+							<graph>
+								<pluginType>TransactionsPerSecond</pluginType>
+								<width>800</width>
+								<height>600</height>
+								<outputFile>${project.build.directory}/jmeter/results/TransactionsPerSecond.png</outputFile>
+							</graph>
+						</graphs>
+					</configuration>
+
+
+
+					<!-- <executions> <execution> <id>create-graphs</id> <goals> <goal>create-graph</goal> 
+						</goals> <phase>verify</phase> <configuration> <inputFile>${project.build.directory}/jmeter/results/jmeter_load_access.jtl</inputFile> 
+						<graphs> <graph> <pluginType>ThreadsStateOverTime</pluginType> <width>800</width> 
+						<height>600</height> <outputFile>${project.build.directory}/jmeter/results/SimpleWebservicePerformanceTest-ThreadsStateOverTime.png</outputFile> 
+						</graph> </graphs> </configuration> </execution> </executions> -->
 				</plugin>
 			</plugins>
 		</pluginManagement>
