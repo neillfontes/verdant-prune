@@ -1,0 +1,89 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.visualmeta.loadtesting</groupId>
+	<artifactId>jmeter</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>JMeter Load Testing</name>
+
+	<properties>
+		<loadtest.sourcefile.param>${loadtest.sourcefile}</loadtest.sourcefile.param>
+	</properties>
+
+	<profiles>
+		<profile>
+			<id>develop</id>
+			<properties>
+				<loadtest.baseurl>www.develop.office.vm.de</loadtest.baseurl>
+				<loadtest.sourcefile>${loadtest.sourcefile}</loadtest.sourcefile>
+			</properties>
+		</profile>
+		<profile>
+			<id>release</id>
+			<properties>
+				<loadtest.baseurl>www.release.office.vm.de</loadtest.baseurl>
+				<loadtest.sourcefile>${loadtest.sourcefile}</loadtest.sourcefile>
+			</properties>
+		</profile>
+	</profiles>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<!-- Test execution plugin -->
+				<plugin>
+					<groupId>com.lazerycode.jmeter</groupId>
+					<artifactId>jmeter-maven-plugin</artifactId>
+					<version>1.10.1</version>
+					<configuration>
+						<overrideRootLogLevel>INFO</overrideRootLogLevel>
+						<suppressJMeterOutput>false</suppressJMeterOutput>
+						<propertiesUser>
+							<loadtest.baseurl>${loadtest.baseurl}</loadtest.baseurl>
+							<loadtest.sourcefile>${loadtest.sourcefile}</loadtest.sourcefile>
+						</propertiesUser>
+					</configuration>
+					<executions>
+						<execution>
+							<id>jmeter-tests</id>
+							<phase>test</phase>
+							<goals>
+								<goal>jmeter</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+
+				<!-- Reporting plugin -->
+				<plugin>
+					<groupId>de.codecentric</groupId>
+					<artifactId>jmeter-graph-maven-plugin</artifactId>
+					<version>0.1.0</version>
+					<executions>
+						<execution>
+							<id>create-graphs</id>
+							<goals>
+								<goal>create-graph</goal>
+							</goals>
+							<phase>verify</phase>
+							<configuration>
+								<inputFile>${project.basedir}/jmeter/results/results.jtl</inputFile>
+								<graphs>
+									<graph>
+										<pluginType>ThreadsStateOverTime</pluginType>
+										<width>800</width>
+										<height>600</height>
+										<outputFile>${project.basedir}/jmeter/results/SimpleWebservicePerformanceTest-ThreadsStateOverTime.png</outputFile>
+									</graph>
+								</graphs>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+</project>
