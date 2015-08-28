@@ -135,16 +135,28 @@
 								<outputFile>${project.build.directory}/jmeter/results/LatenciesOverTime.png</outputFile>
 							</graph>
 							<graph>
-								<pluginType>LatenciesOverTime</pluginType>
+								<pluginType>ResponseTimesDistribution</pluginType>
 								<width>${graph.hres}</width>
 								<height>${graph.vres}</height>
-								<outputFile>${project.build.directory}/jmeter/results/LatenciesOverTime.png</outputFile>
+								<outputFile>${project.build.directory}/jmeter/results/ResponseTimesDistribution.png</outputFile>
 							</graph>
 							<graph>
 								<pluginType>HitsPerSecond</pluginType>
 								<width>${graph.hres}</width>
 								<height>${graph.vres}</height>
 								<outputFile>${project.build.directory}/jmeter/results/HitsPerSecond.png</outputFile>
+							</graph>
+							<graph>
+								<pluginType>ResponseTimesPercentiles</pluginType>
+								<width>${graph.hres}</width>
+								<height>${graph.vres}</height>
+								<outputFile>${project.build.directory}/jmeter/results/ResponseTimesPercentiles.png</outputFile>
+							</graph>
+							<graph>
+								<pluginType>TimesVsThreads</pluginType>
+								<width>${graph.hres}</width>
+								<height>${graph.vres}</height>
+								<outputFile>${project.build.directory}/jmeter/results/TimesVsThreads.png</outputFile>
 							</graph>
 						</graphs>
 					</configuration>
