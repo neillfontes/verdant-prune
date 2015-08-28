@@ -38,12 +38,12 @@
           <boolProp name="LoopController.continue_forever">false</boolProp>
           <intProp name="LoopController.loops">-1</intProp>
         </elementProp>
-        <stringProp name="ThreadGroup.num_threads">${loadtest.numberofusers}</stringProp>
+        <stringProp name="ThreadGroup.num_threads">10</stringProp>
         <stringProp name="ThreadGroup.ramp_time">10</stringProp>
         <longProp name="ThreadGroup.start_time">1440750327000</longProp>
         <longProp name="ThreadGroup.end_time">1440750327000</longProp>
         <boolProp name="ThreadGroup.scheduler">true</boolProp>
-        <stringProp name="ThreadGroup.duration">${loadtest.duration}</stringProp>
+        <stringProp name="ThreadGroup.duration">60</stringProp>
         <stringProp name="ThreadGroup.delay">0</stringProp>
       </ThreadGroup>
       <hashTree>
@@ -98,9 +98,9 @@
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
-          <stringProp name="domain">${loadtest.baseurl}</stringProp>
+          <stringProp name="domain">www.develop.office.vm.de</stringProp>
           <boolProp name="imageParsing">false</boolProp>
-          <stringProp name="logFile">${loadtest.sourcefile}</stringProp>
+          <stringProp name="logFile">/home/neill/Desktop/jmeter_load_access_log/develop.apache.log</stringProp>
           <stringProp name="parserClassName">org.apache.jmeter.protocol.http.util.accesslog.OrderPreservingLogParser</stringProp>
           <stringProp name="portString"></stringProp>
           <stringProp name="filterClassName">org.apache.jmeter.protocol.http.util.accesslog.LogFilter</stringProp>
@@ -108,9 +108,8 @@
         <hashTree>
           <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Exclude 403s" enabled="true">
             <collectionProp name="Asserion.test_strings">
-              <stringProp name="1553246601">403
-400
-</stringProp>
+              <stringProp name="327199393">403
+400</stringProp>
             </collectionProp>
             <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
             <boolProp name="Assertion.assume_success">false</boolProp>
@@ -162,7 +161,7 @@
             <stringProp name="filename">failed_urls.csv</stringProp>
           </ResultCollector>
           <hashTree/>
-          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="false">
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
             <boolProp name="ResultCollector.error_logging">false</boolProp>
             <objProp>
               <name>saveConfig</name>
@@ -260,7 +259,7 @@ for (JMeterTreeNode node : guiPackage.getTreeModel().getNodesOfType(Clearable.cl
           <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
         </BeanShellSampler>
         <hashTree/>
-        <kg.apc.jmeter.perfmon.PerfMonCollector guiclass="kg.apc.jmeter.vizualizers.PerfMonGui" testclass="kg.apc.jmeter.perfmon.PerfMonCollector" testname="jp@gc - PerfMon Metrics Collector" enabled="false">
+        <kg.apc.jmeter.perfmon.PerfMonCollector guiclass="kg.apc.jmeter.vizualizers.PerfMonGui" testclass="kg.apc.jmeter.perfmon.PerfMonCollector" testname="jp@gc - PerfMon Metrics Collector" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
