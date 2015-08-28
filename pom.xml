@@ -10,6 +10,10 @@
 
 	<properties>
 		<loadtest.sourcefile.param>${loadtest.sourcefile}</loadtest.sourcefile.param>
+		<loadtest.numberofusers.param>${loadtest.sourcefile}</loadtest.numberofusers.param>
+		<loadtest.duration.param>${loadtest.sourcefile}</loadtest.duration.param>
+		<graph.hres>1200</graph.hres>
+		<graph.vres>900</graph.vres>
 	</properties>
 
 	<profiles>
@@ -18,6 +22,8 @@
 			<properties>
 				<loadtest.baseurl>www.develop.office.vm.de</loadtest.baseurl>
 				<loadtest.sourcefile>${loadtest.sourcefile.param}</loadtest.sourcefile>
+				<loadtest.numberofusers>${loadtest.numberofusers.param}</loadtest.numberofusers>
+				<loadtest.duration>${loadtest.duration.param}</loadtest.duration>
 			</properties>
 		</profile>
 		<profile>
@@ -25,6 +31,8 @@
 			<properties>
 				<loadtest.baseurl>www.release.office.vm.de</loadtest.baseurl>
 				<loadtest.sourcefile>${loadtest.sourcefile.param}</loadtest.sourcefile>
+				<loadtest.numberofusers>${loadtest.numberofusers.param}</loadtest.numberofusers>
+				<loadtest.duration>${loadtest.duration.param}</loadtest.duration>
 			</properties>
 		</profile>
 	</profiles>
@@ -45,6 +53,8 @@
 						<propertiesUser>
 							<loadtest.baseurl>${loadtest.baseurl}</loadtest.baseurl>
 							<loadtest.sourcefile>${loadtest.sourcefile}</loadtest.sourcefile>
+							<loadtest.numberofusers>${loadtest.numberofusers}</loadtest.numberofusers>
+							<loadtest.duration>${loadtest.duration}</loadtest.duration>
 						</propertiesUser>
 					</configuration>
 
@@ -93,34 +103,51 @@
 					<configuration>
 						<inputFile>${project.build.directory}/jmeter/results/jmeter_load_access.jtl</inputFile>
 						<graphs>
+							<!-- PluginType Classes listed @ http://jmeter-plugins.org/wiki/JMeterPluginsCMD/ -->						
 							<graph>
 								<pluginType>ThreadsStateOverTime</pluginType>
-								<width>800</width>
-								<height>600</height>
+								<width>${graph.hres}</width>
+								<height>${graph.vres}</height>
 								<outputFile>${project.build.directory}/jmeter/results/ThreadsStateOverTime.png</outputFile>
 							</graph>
 							<graph>
 								<pluginType>TransactionsPerSecond</pluginType>
-								<width>800</width>
-								<height>600</height>
+								<width>${graph.hres}</width>
+								<height>${graph.vres}</height>
 								<outputFile>${project.build.directory}/jmeter/results/TransactionsPerSecond.png</outputFile>
 							</graph>
 							<graph>
 								<pluginType>ResponseTimesOverTime</pluginType>
-								<width>800</width>
-								<height>600</height>
+								<width>${graph.hres}</width>
+								<height>${graph.vres}</height>
 								<outputFile>${project.build.directory}/jmeter/results/ResponseTimesOverTime.png</outputFile>
+							</graph>
+							<graph>
+								<pluginType>BytesThroughputOverTime</pluginType>
+								<width>${graph.hres}</width>
+								<height>${graph.vres}</height>
+								<outputFile>${project.build.directory}/jmeter/results/BytesThroughputOverTime.png</outputFile>
+							</graph>
+							<graph>
+								<pluginType>LatenciesOverTime</pluginType>
+								<width>${graph.hres}</width>
+								<height>${graph.vres}</height>
+								<outputFile>${project.build.directory}/jmeter/results/LatenciesOverTime.png</outputFile>
+							</graph>
+							<graph>
+								<pluginType>LatenciesOverTime</pluginType>
+								<width>${graph.hres}</width>
+								<height>${graph.vres}</height>
+								<outputFile>${project.build.directory}/jmeter/results/LatenciesOverTime.png</outputFile>
+							</graph>
+							<graph>
+								<pluginType>HitsPerSecond</pluginType>
+								<width>${graph.hres}</width>
+								<height>${graph.vres}</height>
+								<outputFile>${project.build.directory}/jmeter/results/HitsPerSecond.png</outputFile>
 							</graph>
 						</graphs>
 					</configuration>
-
-
-
-					<!-- <executions> <execution> <id>create-graphs</id> <goals> <goal>create-graph</goal> 
-						</goals> <phase>verify</phase> <configuration> <inputFile>${project.build.directory}/jmeter/results/jmeter_load_access.jtl</inputFile> 
-						<graphs> <graph> <pluginType>ThreadsStateOverTime</pluginType> <width>800</width> 
-						<height>600</height> <outputFile>${project.build.directory}/jmeter/results/SimpleWebservicePerformanceTest-ThreadsStateOverTime.png</outputFile> 
-						</graph> </graphs> </configuration> </execution> </executions> -->
 				</plugin>
 			</plugins>
 		</pluginManagement>
