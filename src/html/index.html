@@ -1,0 +1,77 @@
+<html>
+<title>Load Test Report</title>	
+<body>
+<style>
+h2 {
+  font: normal 20px/normal "Trebuchet MS", Helvetica, sans-serif;
+  color: rgba(0,0,0,1);
+  text-overflow: clip;
+  font-weight: bold;
+}
+h4 {
+  font: normal 12px/normal "Trebuchet MS", Helvetica, sans-serif;
+  color: rgba(0,0,0,1);
+  text-overflow: clip;
+}
+h3 {
+  font: normal 16px/normal "Trebuchet MS", Helvetica, sans-serif;
+  color: rgba(0,0,0,1);
+  text-overflow: clip;
+  font-weight: bold;
+}
+th {
+  font: normal 14px/normal "Trebuchet MS", Helvetica, sans-serif;
+  bold: 300;
+  color: rgba(0,0,0,1);
+  text-overflow: clip;
+}
+</style>
+
+<h2>Results</h2>
+
+<!-- <h4>Execution time: from dd.mm.yyyy - hh:mm:ssss to dd.mm.yyyy hh:mm:ssss </h4> -->
+
+<h3>JMeter Metrics</h3>
+
+<table width="100%">
+ <th>Threads State Over Time</th>
+    <tr>
+        <td><img src="ThreadsStateOverTime.png"></td>
+    </tr>
+ <th>Transactions Per Second</th>
+    <tr>
+        <td><img src="TransactionsPerSecond.png"></td>
+    </tr>
+ <th>Response Times Over Time</th>
+    <tr>
+        <td><img src="ResponseTimesOverTime.png"></td>
+    </tr>
+ <th>Bytes Throughput Over Time</th>
+    <tr>
+        <td><img src="BytesThroughputOverTime.png"></td>
+    </tr>
+ <th>Hits Per Second</th>
+    <tr>
+        <td><img src="HitsPerSecond.png"></td>
+    </tr>
+</table>
+
+<h3>Server Metrics</h3>
+
+<table width="100%">
+ <th>CPU Consumption</th>
+    <tr>
+        <td><img src="#"></td>
+    </tr>
+ <th>Memory Consumption</th>
+    <tr>
+        <td><img src="#"></td>
+    </tr>
+ <th>Amount of file descriptors being used</th>
+    <tr>
+        <td><img src="#"></td>
+    </tr>
+</table>
+
+</body>
+</html>
