@@ -50,6 +50,14 @@
 						<suppressJMeterOutput>false</suppressJMeterOutput>
 						<ignoreResultFailures>true</ignoreResultFailures>
 						<testResultsTimestamp>false</testResultsTimestamp>
+						<jMeterProcessJVMSettings>
+							<xms>2048</xms>
+							<xmx>2048</xmx>
+							<!--  <arguments>
+								<argument>-Xprof</argument>
+								<argument>-Xfuture</argument>
+							</arguments> --> 
+						</jMeterProcessJVMSettings>
 						<propertiesUser>
 							<loadtest.baseurl>${loadtest.baseurl}</loadtest.baseurl>
 							<loadtest.sourcefile>${loadtest.sourcefile}</loadtest.sourcefile>
@@ -83,16 +91,6 @@
 							</exclusions>
 						</dependency>
 					</dependencies>
-
-					<executions>
-						<execution>
-							<id>jmeter-tests</id>
-							<phase>verify</phase>
-							<goals>
-								<goal>jmeter</goal>
-							</goals>
-						</execution>
-					</executions>
 				</plugin>
 
 				<!-- Reporting plugin -->
@@ -103,7 +101,7 @@
 					<configuration>
 						<inputFile>${project.build.directory}/jmeter/results/jmeter_load_access.jtl</inputFile>
 						<graphs>
-							<!-- PluginType Classes listed @ http://jmeter-plugins.org/wiki/JMeterPluginsCMD/ -->						
+							<!-- PluginType Classes listed @ http://jmeter-plugins.org/wiki/JMeterPluginsCMD/ -->
 							<graph>
 								<pluginType>ThreadsStateOverTime</pluginType>
 								<width>${graph.hres}</width>
