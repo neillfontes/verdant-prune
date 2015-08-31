@@ -91,32 +91,6 @@
 					</dependencies>
 				</plugin>
 
-				<!-- Copying the HTML report file to the target folder -->
-				<plugin>
-					<artifactId>maven-resources-plugin</artifactId>
-					<version>2.7</version>
-					<executions>
-						<execution>
-							<id>copy-resources</id>
-							<!-- here the phase you need -->
-							<phase>test</phase>
-							<goals>
-								<goal>copy-resources</goal>
-							</goals>
-							<configuration>
-								<outputDirectory>${basedir}/target/jmeter/results</outputDirectory>
-								<resources>
-									<resource>
-										<directory>src/html</directory>
-										<filtering>true</filtering>
-									</resource>
-								</resources>
-							</configuration>
-						</execution>
-					</executions>
-				</plugin>
-
-
 				<!-- Reporting plugin -->
 				<plugin>
 					<groupId>de.codecentric</groupId>
@@ -183,6 +157,32 @@
 						</graphs>
 					</configuration>
 				</plugin>
+
+				<!-- Copying the HTML report file to the target folder -->
+				<plugin>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>2.7</version>
+					<configuration>
+						<outputDirectory>${basedir}/target/jmeter/results/</outputDirectory>
+						<resources>
+							<resource>
+								<directory>src/html/</directory>
+								<filtering>true</filtering>
+							</resource>
+						</resources>
+					</configuration>
+					<executions>
+						<execution>
+							<id>copy-resources</id>
+							<!-- here the phase you need -->
+							<phase>validate</phase>
+							<goals>
+								<goal>copy-resources</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+
 			</plugins>
 		</pluginManagement>
 	</build>
