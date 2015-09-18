@@ -51,8 +51,14 @@
 						<ignoreResultFailures>true</ignoreResultFailures>
 						<testResultsTimestamp>false</testResultsTimestamp>
 						<jMeterProcessJVMSettings>
-							<xms>2048</xms>
-							<xmx>2048</xmx>
+							<xms>4096</xms>
+							<xmx>4096</xmx>
+							<arguments>
+								<argument>-Dcom.sun.management.jmxremote=true</argument>
+								<argument>-Dcom.sun.management.jmxremote.port=7676</argument>
+								<argument>-Dcom.sun.management.jmxremote.authenticate=false</argument>
+								<argument>-Dcom.sun.management.jmxremote.ssl=false</argument>
+							</arguments>
 							<!-- <arguments> <argument>-Xprof</argument> <argument>-Xfuture</argument> 
 								</arguments> -->
 						</jMeterProcessJVMSettings>
