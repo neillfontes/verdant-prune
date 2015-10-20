@@ -1,0 +1,26 @@
+# Autodetect text files and set them to lf on commit
+* text=auto eol=lf
+
+*.txt text eol=lf
+*.scss text eol=lf
+
+# Definitely binary
+*.png binary
+*.jpeg binary
+*.jpg binary
+*.gif binary
+*.ico binary
+*.jar binary
+*.zip binary
+*.gz binary
+*.cgi binary
+*.dll binary
+*.pdf binary
+*.swf binary
+*.eot binary
+*.ttf binary
+*.woff binary
+*.session binary
+*.icc binary
+libopencv_java.so binary
+opencv_java.dll binary
